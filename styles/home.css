@@ -1,0 +1,123 @@
+body{
+    background-color: white;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.navbar-expand-lg{
+    background-color: #131515;
+}
+
+.carrito{
+    width: 5%;
+    position: relative;
+    margin-left: 180%;
+}
+
+.usuario{
+    width: 5%;
+    position: relative;
+    margin-left: 90%;
+}
+
+.logo{
+    width: 18%;
+    margin-left: 2%;
+}
+
+.nav-link{
+    color: white;
+    position: relative;
+}
+
+.carousel-inner{
+    position: relative;
+    margin-top: 5%;
+    width: 40%;
+}
+
+.imagen-carrusel{
+    width: 50%;
+}
+
+.card{
+    margin-top: 2%;
+    margin-right: 5%;
+    background-color: transparent;
+    color: white;
+}
+
+footer{
+    background-color: #131515;
+    color: #adb5bd;
+    font-size: small;
+    margin-top: 10%;
+}
+
+.alg-hoteles{
+    color: white;
+    font-size: small;
+    margin-left: -3%;
+}
+
+.container{
+    margin-top: 100%;   
+}
+
+.container1{
+    margin-top: 2%;
+}
+
+button{
+    margin-top: 3%;
+    margin-left: 45%;
+}
+
+.col-5{
+    margin-top: 2%;
+    margin-left: 5%;
+    color: white;
+}
+
+
+.btn{
+    background-color: white;
+    color: black;
+}
+
+.card-paq{
+    margin-right: 5%;
+    background-color: white;
+    margin-bottom: 3%;
+}
+
+.pagination{
+    margin-left: 40%;
+}
+
+.page-link{
+    color: black;
+}
+
+.titulo-contacto{
+    color: white;
+}
+
+.instagram{
+    width: 8%;
+}
+
+.facebook{
+    width: 6%;
+}
+
+.correo{
+    width: 6%;
+}
+
+.titulo-paquete{
+    color: white;
+}
+
+.detalle{
+    text-align: center;
+}
