@@ -27,7 +27,7 @@ const createMeanOfTransportById = async(req, res) => {
     console.log(req.body);
     const activo = true
     const {capacidad, empresa, localidad} = req.body
-    const response = await pool.query('inserte into transporte (capacidad, empresa, localidad, activo) values ($1,$2,$3,$4)',
+    const response = await pool.query('insert into transporte (capacidad, empresa, localidad, activo) values ($1,$2,$3,$4)',
     [capacidad, empresa, localidad, activo])
     console.log(response);
     res.json({

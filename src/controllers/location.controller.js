@@ -12,7 +12,7 @@ const getLocation = async(req, res) => {
     res.status(200).json(response.rows);
 };
 
-const creatLocation = async(req, res) => {
+const createLocation = async(req, res) => {
     console.log(req.body);
     const activo = true
     const {nombre} = req.body
@@ -37,5 +37,5 @@ const updateLocation = async (req, res) => {
 
 module.exports = {
     getLocation, 
-    creatLocation
+    createLocation
 }

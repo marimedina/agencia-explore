@@ -2,7 +2,7 @@
 //Obtener todos los paquetes
 //Obtener un paquete determinado
 //Agregar nuevo paquete
-//
+//Eliminar paquete (activo = false)
 //Modificar un paquete
 
 
@@ -22,8 +22,7 @@ const getPackageById = async(req, res) => {
     res.json(response.rows);
 };
 
-//FALTA PROBAR TODO
-
+//probado y anda
 const createPackage = async(req, res) => {
     console.log(req.body);
     const activo = true;
@@ -35,20 +34,26 @@ const createPackage = async(req, res) => {
     res.json({
       message: 'Package Added Succesfully' ,
       body:{
-      package: {id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo}
-       //ver si esta bien que el id vaya aca arriba
+      package: {nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo}
   } 
 })};
 
 const deletePackage = async(req, res) => {
+    //agregar para que no permita eliminar si el paquete ya esta desactivado
+    const id = req.params.id;
+    console.log('id', id);
+    const response = await pool.query('update paquete set activo = false where id = $1', [id])
+    console.log(response);
+    res.json(`Package ${id} deleted successfully`);       
     
+
 }; 
 
 const updatePackage = async(req, res) => {
     const {id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo} = req.body;
     console.log('id', id);
     const response = await pool.query('update paquete set nombre = $2, precio = $3, comienzo = $4, fin = $5, salida = $6, descripcion = $7, cupos = $8, duracion = $9, activo = $10 where id = $1',
-    [nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo])
+    [id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo])
     console.log(response);
     res.json(`Package ${id} update successfully`);
 };
@@ -58,5 +63,6 @@ module.exports = {
     getPackage,
     getPackageById,
     createPackage,
+    deletePackage,
     updatePackage
 };
