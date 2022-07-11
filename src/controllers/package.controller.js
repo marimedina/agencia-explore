@@ -38,6 +38,7 @@ const createPackage = async(req, res) => {
   } 
 })};
 
+//probado y anda
 const deletePackage = async(req, res) => {
     //agregar para que no permita eliminar si el paquete ya esta desactivado
     const id = req.params.id;
@@ -49,6 +50,7 @@ const deletePackage = async(req, res) => {
 
 }; 
 
+//probado y anda
 const updatePackage = async(req, res) => {
     const {id, nombre, precio, comienzo, fin, salida, descripcion, cupos, duracion, activo} = req.body;
     console.log('id', id);

@@ -1,11 +1,8 @@
 //Obtener todos los transportes
 //Obtener un transporte determinado
 //Agregar nuevo transporte
-//
+// Eliminar (poner en false) transporte
 //Modificar un transporte
-
-
-// PROBAR TODO
 
 const req = require('express/lib/request')
 const { Pool } = require('pg')
@@ -23,6 +20,7 @@ const getMeanOfTransportById = async(req, res) => {
     res.json(response.rows);
 };
 
+//anda 
 const createMeanOfTransportById = async(req, res) => {
     console.log(req.body);
     const activo = true
@@ -33,19 +31,26 @@ const createMeanOfTransportById = async(req, res) => {
     res.json({
         message: 'Mean of transport Added Succesfully' ,
         body:{
-        MeansOfTransport:{id, capacidad, empresa, localidad, activo}}
+        MeansOfTransport:{capacidad, empresa, localidad, activo}}
     })
 };
 
+//anda
 const deleteMeanOfTransportById = async (req, res) => {
-
+    //anda , falta agregarle que diga si ya esta en falso que no se puede hacer. 
+    const id = req.params.id;
+    console.log('id', id);
+    const response = await pool.query('update transporte set activo = false where id = $1', [id])
+    console.log(response);
+    res.json(`Mean of transporte ${id} deleted successfully`); 
 };
 
+//anda
 const updateMeanOfTransport = async(req, res) => {
     const {id, capacidad, empresa, localidad, activo} = req.body
     console.log('id', id);
     const response = await pool.query('update transporte set capacidad = $2, empresa = $3, localidad = $4, activo = $5 where id = $1',
-    [capacidad, empresa, localidad, activo])
+    [id, capacidad, empresa, localidad, activo])
     console.log(response);
     res.json(`Mean of transoport ${id} update successfully`);
 };
@@ -55,5 +60,6 @@ module.exports = {
     getMeanOfTransport,
     getMeanOfTransportById,
     createMeanOfTransportById,
+    deleteMeanOfTransportById,
     updateMeanOfTransport
 };
