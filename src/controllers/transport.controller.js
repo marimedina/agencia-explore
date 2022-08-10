@@ -1,27 +1,22 @@
-//Obtener todos los transportes
-//Obtener un transporte determinado
-//Agregar nuevo transporte
-// Eliminar (poner en false) transporte
-//Modificar un transporte
 
 const req = require('express/lib/request')
 const { Pool } = require('pg')
 const config = require('../../config')
 const pool = new Pool(config.db);
 
-const getMeanOfTransport = async(req, res) => {
+const getTransport = async(req, res) => {
     const response = await pool.query('select * from transporte')
     res.status(200).json(response.rows);
 };
 
-const getMeanOfTransportById = async(req, res) => {
+const getTransportById = async(req, res) => {
     const id = req.params.id;
     const response = await pool.query('select * from transporte where id = $1', [id])
     res.json(response.rows);
 };
 
 //anda 
-const createMeanOfTransportById = async(req, res) => {
+const createTransportById = async(req, res) => {
     console.log(req.body);
     const activo = true
     const {capacidad, empresa, localidad} = req.body
@@ -29,37 +24,37 @@ const createMeanOfTransportById = async(req, res) => {
     [capacidad, empresa, localidad, activo])
     console.log(response);
     res.json({
-        message: 'Mean of transport Added Succesfully' ,
+        message: 'Transport successfully added' ,
         body:{
         MeansOfTransport:{capacidad, empresa, localidad, activo}}
     })
 };
 
 //anda
-const deleteMeanOfTransportById = async (req, res) => {
+const deleteTransport = async (req, res) => {
     //anda , falta agregarle que diga si ya esta en falso que no se puede hacer. 
     const id = req.params.id;
     console.log('id', id);
     const response = await pool.query('update transporte set activo = false where id = $1', [id])
     console.log(response);
-    res.json(`Mean of transporte ${id} deleted successfully`); 
+    res.json(`Transport ${id} successfully deleted`); 
 };
 
 //anda
-const updateMeanOfTransport = async(req, res) => {
+const updateTransport = async(req, res) => {
     const {id, capacidad, empresa, localidad, activo} = req.body
     console.log('id', id);
     const response = await pool.query('update transporte set capacidad = $2, empresa = $3, localidad = $4, activo = $5 where id = $1',
     [id, capacidad, empresa, localidad, activo])
     console.log(response);
-    res.json(`Mean of transoport ${id} update successfully`);
+    res.json(`Transport ${id} successfully update`);
 };
 
 
 module.exports = {
-    getMeanOfTransport,
-    getMeanOfTransportById,
-    createMeanOfTransportById,
-    deleteMeanOfTransportById,
-    updateMeanOfTransport
+    getTransport,
+    getTransportById,
+    createTransportById,
+    deleteTransport,
+    updateTransport
 };
